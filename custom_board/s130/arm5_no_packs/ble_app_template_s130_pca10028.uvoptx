@@ -347,7 +347,7 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>3</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\..\ads1291-2.c</PathWithFileName>
@@ -362,7 +362,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\ecg_mpu_custom_v1_0.h</PathWithFileName>
+      <PathWithFileName>..\..\..\config\ecg_mpu_custom_v1_0.h</PathWithFileName>
       <FilenameWithoutPath>ecg_mpu_custom_v1_0.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -374,7 +374,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\..\custom_board.h</PathWithFileName>
+      <PathWithFileName>..\..\..\config\custom_board.h</PathWithFileName>
       <FilenameWithoutPath>custom_board.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
