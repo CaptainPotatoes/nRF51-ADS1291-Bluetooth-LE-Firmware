@@ -66,12 +66,6 @@
 //#include "bsp.h"
 //#include "bsp_btn_ble.h"
 
-/**@TODO: DFU Support: */
-#ifdef BLE_DFU_APP_SUPPORT
-#include "ble_dfu.h"
-#include "dfu_app_handler.h"
-#include "nrf_delay.h"
-#endif // BLE_DFU_APP_SUPPORT
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT  1                                          /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 #define CENTRAL_LINK_COUNT               0                                          /**< Number of central links used by the application. When changing this number remember to adjust the RAM settings*/
@@ -116,8 +110,9 @@ static uint16_t                          m_conn_handle = BLE_CONN_HANDLE_INVALID
 /**@BMS STUFF */
 ble_bms_t 															 m_bms;
 /**@BAS STUFF */
+#if (defined(BLE_BAS))
 ble_bas_t																 m_bas;
-
+#endif
 /**@GPIOTE */
 #if (defined(ADS1291) || defined(ADS1292) || defined(ADS1292R))
 static bool															m_drdy = false;
@@ -132,9 +127,6 @@ APP_TIMER_DEF(m_battery_timer_id);
 #define ADC_PRE_SCALING_COMPENSATION      3                                        /**< The ADC is configured to use VDD with 1/3 prescaling as input. And hence the result of conversion is to be multiplied by 3 to get the actual value of the battery voltage.*/
 #define ADC_RESULT_IN_MILLI_VOLTS(ADC_VALUE)\
         ((((ADC_VALUE) * ADC_REF_VOLTAGE_IN_MILLIVOLTS) / 255) * ADC_PRE_SCALING_COMPENSATION)
-
-/**@DFU Support(2): */
-
 /**@Services declared under ble_###*/
 static ble_uuid_t m_adv_uuids[] = 
 {
@@ -253,10 +245,10 @@ static void timers_init(void)
     // Initialize timer module.
     APP_TIMER_INIT(APP_TIMER_PRESCALER, APP_TIMER_OP_QUEUE_SIZE, false);
     // Create timers.
-    uint32_t err_code;
     //err_code = app_timer_create(&m_bms_send_timer_id, APP_TIMER_MODE_REPEATED, timer_send_timeout_handler);
     //APP_ERROR_CHECK(err_code);
 		#if defined(BLE_BAS)
+    uint32_t err_code;
 		err_code = app_timer_create(&m_battery_timer_id, APP_TIMER_MODE_REPEATED, battery_level_meas_timeout_handler);
     APP_ERROR_CHECK(err_code);
 		#endif
