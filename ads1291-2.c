@@ -352,12 +352,6 @@ void get_bvm_sample (body_voltage_t *body_voltage) {
 			}
 			nrf_delay_us(1);
 		} while (cnt<255);
-		/*do {
-			cnt++;
-			*body_voltage = ((tx_rx_data[3] << 8) | tx_rx_data[4]);
-			//NRF_LOG_PRINTF("[cnt] = %d, bv = %d\r\n",cnt ,*body_voltage);
-			//}
-		} while (cnt!=5);*/
 }
 
 
